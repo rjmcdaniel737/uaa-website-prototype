@@ -1,86 +1,117 @@
 /* =============================================
-   UAA Website Prototype — Main JS
+   UAA Website Prototype — Main JS v2
    ============================================= */
 
 (function () {
   'use strict';
 
-  // ---- Mobile nav toggle ----
+  /* ---- Mobile nav toggle ---- */
   var toggle = document.getElementById('navToggle');
   var nav    = document.getElementById('mainNav');
-
   if (toggle && nav) {
     toggle.addEventListener('click', function () {
-      nav.classList.toggle('open');
-      this.setAttribute('aria-expanded', nav.classList.contains('open'));
+      var open = nav.classList.toggle('open');
+      this.setAttribute('aria-expanded', open);
     });
   }
 
-  // ---- Close mobile nav on link click & update active state ----
-  document.querySelectorAll('.main-nav a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      if (nav) nav.classList.remove('open');
-      document.querySelectorAll('.main-nav a').forEach(function (l) {
-        l.classList.remove('active');
-      });
-      this.classList.add('active');
-    });
+  /* ---- Close mobile nav on outside click ---- */
+  document.addEventListener('click', function (e) {
+    if (nav && nav.classList.contains('open') && !nav.contains(e.target) && e.target !== toggle) {
+      nav.classList.remove('open');
+    }
   });
 
-  // ---- Sticky header enhanced shadow on scroll ----
+  /* ---- Sticky header shadow on scroll ---- */
   var header = document.querySelector('.site-header');
   if (header) {
     window.addEventListener('scroll', function () {
       header.style.boxShadow = window.scrollY > 10
-        ? '0 2px 16px rgba(0,0,0,0.3)'
-        : '0 2px 8px rgba(0,0,0,0.20)';
+        ? '0 3px 20px rgba(0,0,0,0.35)'
+        : '0 2px 8px rgba(0,0,0,0.25)';
+    }, { passive: true });
+  }
+
+  /* ---- Program Finder: College filter buttons ---- */
+  var collegeButtons = document.querySelectorAll('.college-btn');
+  var programItems   = document.querySelectorAll('#programList li');
+
+  collegeButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      collegeButtons.forEach(function (b) { b.classList.remove('active'); });
+      this.classList.add('active');
+
+      var college = this.dataset.college;
+      programItems.forEach(function (item) {
+        if (college === 'all' || item.dataset.college === college) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* ---- Program Finder: Text search ---- */
+  var searchInput = document.getElementById('programSearch');
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      var query = this.value.toLowerCase().trim();
+      var activeCollege = document.querySelector('.college-btn.active');
+      var college = activeCollege ? activeCollege.dataset.college : 'all';
+
+      programItems.forEach(function (item) {
+        var name = item.querySelector('a').textContent.toLowerCase();
+        var collegeMatch = college === 'all' || item.dataset.college === college;
+        var textMatch    = name.includes(query);
+        item.classList.toggle('hidden', !(collegeMatch && textMatch));
+      });
     });
   }
 
-  // ---- Scroll-reveal animation ----
-  var revealEls = document.querySelectorAll('.card, .research-card, .feature-item, .stat');
+  /* ---- Program Finder: Click to highlight + show detail ---- */
+  programItems.forEach(function (item) {
+    item.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') return; // let links navigate normally
+      programItems.forEach(function (i) { i.classList.remove('active-program'); });
+      this.classList.add('active-program');
+    });
+  });
 
-  // Inject reveal styles dynamically
+  /* ---- Scroll-reveal animations ---- */
   var style = document.createElement('style');
   style.textContent =
-    '.reveal-init { opacity: 0; transform: translateY(24px); transition: opacity 0.55s ease, transform 0.55s ease; }' +
-    '.revealed    { opacity: 1 !important; transform: translateY(0) !important; }';
+    '.reveal-init{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}' +
+    '.revealed{opacity:1!important;transform:none!important}';
   document.head.appendChild(style);
 
+  var revealTargets = document.querySelectorAll(
+    '.news-card, .event-card, .iam-stat, .research-card, .campus-card'
+  );
+
   if ('IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
+    var revealObserver = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('revealed');
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.08 });
 
-    revealEls.forEach(function (el) {
+    revealTargets.forEach(function (el) {
       el.classList.add('reveal-init');
-      observer.observe(el);
+      revealObserver.observe(el);
     });
-  } else {
-    // Fallback: just show everything
-    revealEls.forEach(function (el) { el.style.opacity = '1'; });
   }
 
-  // ---- Smooth active nav highlighting on scroll ----
-  var sections = document.querySelectorAll('section[id]');
-  var navLinks  = document.querySelectorAll('.main-nav a[href^="#"]');
-
-  window.addEventListener('scroll', function () {
-    var scrollY = window.scrollY + 100;
-    sections.forEach(function (section) {
-      if (scrollY >= section.offsetTop && scrollY < section.offsetTop + section.offsetHeight) {
-        navLinks.forEach(function (link) {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + section.id) {
-            link.classList.add('active');
-          }
-        });
-      }
+  /* ---- Hero tab switching ---- */
+  var heroTabs = document.querySelectorAll('.hero-tab');
+  heroTabs.forEach(function (tab) {
+    tab.addEventListener('click', function (e) {
+      e.preventDefault();
+      heroTabs.forEach(function (t) { t.classList.remove('active'); });
+      this.classList.add('active');
     });
   });
 
