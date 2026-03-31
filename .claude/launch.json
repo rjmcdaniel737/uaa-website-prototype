@@ -4,7 +4,7 @@
     {
       "name": "uaa-prototype",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "5500"],
+      "runtimeArgs": ["-m", "http.server", "5500", "--directory", "C:\\Users\\rjmcdaniel\\OneDrive - University of Alaska\\Documents\\GitHub\\uaa-website-prototype"],
       "port": 5500
     }
   ]

@@ -30,12 +30,259 @@
 <meta name="apple-itunes-app" content="app-id=553790064" />
 <meta name="google-play-app" content="app-id=com.blackboard.android.central.uaa_alaska&amp;hl=en" />
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,400;1,700&display=swap">
 <link rel="stylesheet" href="_template/assets/css/leaflet.css">
 <link rel="stylesheet" href="_template/assets/css/app.css?v=5.0.3">
 
 <style>
     .accessible-megamenu .accessible-megamenu-panel {
         visibility: hidden;
+    }
+    /* Hero height */
+    .header-orbit, .header-orbit .orbit-container, .header-orbit .orbit-figure, .header-slider {
+        height: 58vh !important;
+        min-height: 420px !important;
+    }
+    /* Hero height */
+    .header-orbit, .header-orbit .orbit-container, .header-orbit .orbit-figure, .header-slider {
+        height: 58vh !important;
+        min-height: 420px !important;
+    }
+    /* ---- BAR 1: white, 80% opacity ---- */
+    .utility-wrapper.utility { background-color: rgba(255,255,255,0.8) !important; }
+    #utilityBar { border-bottom: 2px solid rgba(255,195,37,0.85) !important; }
+    #utilityBar .button, #utilityBar a, #utilityBar li a {
+        color: #00583d !important;
+        text-shadow: none !important;
+    }
+    #utilityBar .button.light-gray { color: #00583d !important; text-shadow: none !important; }
+    /* Search box vertical centering in utility bar */
+    #utilityBar .dropdown.menu { display: flex !important; align-items: center !important; height: 100% !important; }
+    #utilityBar .dropdown.menu > li { display: flex !important; align-items: center !important; align-self: center !important; }
+    #utilityBar .dropdown.menu > li:has(.util-search-form) { padding: 0 !important; }
+    /* Centered title in bar 1 */
+    .utility-bar-title {
+        position: absolute !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        font-weight: 700 !important;
+        font-size: 1.6rem !important;
+        font-family: 'Roboto Condensed', sans-serif !important;
+        color: #00583d !important;
+        letter-spacing: 0.08em !important;
+        text-transform: uppercase !important;
+        white-space: nowrap !important;
+        pointer-events: none !important;
+        text-shadow: none !important;
+        z-index: 1 !important;
+    }
+    /* ---- BAR 2: green, 80% opacity ---- */
+    .main-menu-wrapper,
+    #mainMenuWrapper {
+        background: rgba(0,88,61,0.8) !important;
+        background-color: rgba(0,88,61,0.8) !important;
+        background-image: none !important;
+        box-shadow: none !important;
+    }
+    #mainMenuWrapper .button.tertiary,
+    #mainMenuWrapper .button.large.clear.dropdown,
+    #mainMenuWrapper h2 a,
+    #mainMenuWrapper .searchButton { color: #ffffff !important; text-shadow: none !important; }
+    #mainMenuWrapper .button.tertiary:hover,
+    #mainMenuWrapper h2 a:hover { color: #ffc325 !important; background: transparent !important; }
+    /* ---- HERO ---- */
+    /* Remove green gradient filter */
+    .color-overlay.primary-tertiary-linear-vgradient-back { display: none !important; }
+    /* Orbit overlay spans full hero so bottom:0 on tab strip works */
+    .orbit-overlay {
+        top: 0 !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        display: block !important;
+    }
+    /* Tab strip: bottom of hero, left-anchored, ~50% wide */
+    .hero-tab-strip {
+        position: absolute !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: auto !important;
+        width: 52% !important;
+        max-width: 700px !important;
+        display: flex !important;
+        align-items: stretch !important;
+        z-index: 5 !important;
+        background: rgba(0,46,33,0.88) !important;
+    }
+    .hero-tab {
+        display: flex !important;
+        flex: 1 !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 0.85rem !important;
+        padding: 0.85rem 1.25rem !important;
+        color: #fff !important;
+        font-weight: 700 !important;
+        text-decoration: none !important;
+        font-size: 0.82rem !important;
+        letter-spacing: 0.06em !important;
+        text-transform: uppercase !important;
+        border-right: 1px solid rgba(255,255,255,0.15) !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        margin: 0 !important;
+        border-bottom: none !important;
+        transition: background 0.2s !important;
+        transform: none !important;
+    }
+    .hero-tab:last-child { border-right: none !important; }
+    .hero-tab:hover { background: rgba(0,70,49,0.7) !important; color: #ffc325 !important; }
+    .hero-tab.hero-tab-primary { background: rgba(255,195,37,0.92) !important; color: #004631 !important; }
+    .hero-tab.hero-tab-primary:hover { background: rgba(255,195,37,1) !important; }
+    .hero-tab-label { line-height: 1.25; }
+    /* Utility bar inline search */
+    .util-search-form {
+        display: flex !important;
+        align-items: center !important;
+        background: rgba(0,86,61,0.08) !important;
+        border: 1px solid rgba(0,86,61,0.3) !important;
+        border-radius: 3px !important;
+        overflow: hidden !important;
+        margin: 0 !important;
+        height: 28px !important;
+        padding: 0 !important;
+    }
+    .util-search-form input[type=search] {
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        outline: none !important;
+        color: #004631 !important;
+        font-size: 0.78rem !important;
+        padding: 0 0.5rem !important;
+        width: 150px !important;
+        height: 100% !important;
+        margin: 0 !important;
+    }
+    .util-search-form input[type=search]::placeholder { color: rgba(0,70,49,0.5); }
+    .util-search-form button[type=submit] {
+        background: transparent !important;
+        border: none !important;
+        border-left: 1px solid rgba(0,86,61,0.2) !important;
+        color: #00583d !important;
+        padding: 0 0.5rem !important;
+        cursor: pointer !important;
+        height: 100% !important;
+        font-size: 0.78rem !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+    }
+    .util-search-form button[type=submit]:hover { color: #004631 !important; }
+    /* ---- Force desktop nav at >=1024px (UAA theme uses 1260px; override to standard) ---- */
+    @media screen and (min-width: 64em) {
+        /* ── Show / hide ── */
+        #mainMenuWrapper .show-for-large { display: block !important; }
+        #mainMenuWrapper .hide-for-large { display: none !important; }
+        #utilityBar .show-for-large  { display: block !important; }
+        #utilityBar .hide-for-large  { display: none  !important; }
+
+        /* ── Utility bar: prevent row-wrap, fix cell widths ── */
+        #utilityBar .grid-x { flex-wrap: nowrap !important; }
+        #utilityBar .grid-x > .cell.large-6 {
+            width: 50% !important; max-width: 50% !important; flex: 0 0 50% !important;
+        }
+        /* Reveal the right-side utility menu (hide-overflow collapses it on mobile) */
+        #utilityBar #utilityMenu {
+            overflow: visible !important;
+            height: auto   !important;
+        }
+        /* Prevent logo + nav items in the left cell from wrapping */
+        #utilityBar .grid-x > .cell:not(#utilityMenu) ul.menu {
+            flex-wrap: nowrap !important;
+            white-space: nowrap !important;
+        }
+
+        /* ── Megamenu wrapper: fix Foundation grid cell widths ── */
+        #mainMenuWrapper .grid-x > .cell.large-3 {
+            width: 25% !important; max-width: 25% !important; flex: 0 0 25% !important;
+        }
+        #mainMenuWrapper .grid-x > .cell.auto {
+            flex: 1 1 0px !important; width: auto !important; max-width: 100% !important;
+        }
+        /* Megamenu nav and list must be flex so items lay out horizontally */
+        #mainMenuWrapper nav.megamenu { display: flex !important; }
+        #mainMenuWrapper nav.megamenu > ol.accessible-megamenu {
+            display: flex !important; flex-wrap: nowrap !important; width: 100% !important;
+        }
+
+        /* ── Green nav bar: hide dropdown arrows, reduce font size ── */
+        #mainMenuWrapper nav.megamenu ol li > h2 > a.button.dropdown::after { display: none !important; }
+        #mainMenuWrapper nav.megamenu ol li > h2 > a.button { font-size: 15px !important; }
+
+        /* ── Megamenu dropdown panel: position below bar, white bg, horizontal layout ── */
+        #mainMenuWrapper .accessible-megamenu-panel {
+            top: 100% !important;
+            left: 0   !important;
+            background-color: #ffffff !important;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.18) !important;
+        }
+        /* Panel columns: spread full width (40% description + 30% + 30% link cols) */
+        #mainMenuWrapper .accessible-megamenu-panel ol.grid-x > li.cell.large-4,
+        #mainMenuWrapper .accessible-megamenu-panel ol.grid-x > li.cell.large-6 {
+            width: 40% !important; max-width: 40% !important; flex: 0 0 40% !important;
+        }
+        #mainMenuWrapper .accessible-megamenu-panel ol.grid-x > li.cell.small-2 {
+            width: 30% !important; max-width: 30% !important; flex: 0 0 30% !important;
+        }
+        #mainMenuWrapper .accessible-megamenu-panel ol.grid-x > li.cell.large-8 {
+            width: 60% !important; max-width: 60% !important; flex: 0 0 60% !important;
+        }
+        #mainMenuWrapper .accessible-megamenu-panel ol.grid-x > li.cell.large-3 {
+            width: 25% !important; max-width: 25% !important; flex: 0 0 25% !important;
+        }
+    }
+
+    /* ── Campus Selector in green nav bar ── */
+    .campus-selector {
+        position: relative; display: inline-flex; flex-direction: column;
+        align-items: center; padding: 8px 14px; height: 100%; justify-content: center;
+    }
+    /* .campus-label-text removed */
+    .campus-trigger { display: flex; align-items: center; gap: 7px; }
+    .campus-chevron {
+        background: none; border: none; padding: 0 5px; cursor: pointer;
+        color: rgba(255,255,255,0.9); display: flex; align-items: center;
+        border-radius: 3px; transition: background 0.15s; line-height: 1; height: 39px;
+    }
+    .campus-chevron:hover,
+    .campus-chevron[aria-expanded="true"] { background: rgba(255,255,255,0.18); }
+    .campus-chevron svg { transition: transform 0.2s; display: block; }
+    .campus-chevron[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .campus-nav-logo { height: 39px; display: block; background: rgba(255,255,255,0.92); padding: 3px 8px; border-radius: 4px; }
+    .campus-drop-panel {
+        position: absolute; top: 100%; left: 0; background: #fff;
+        border-radius: 0 0 6px 6px; box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+        z-index: 2000; padding: 12px; min-width: 240px;
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    .campus-drop-panel[hidden] { display: none; }
+    .campus-drop-item {
+        display: block; text-decoration: none; border-radius: 6px; overflow: hidden;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .campus-drop-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .campus-dark  { background: #00583d; }
+    .campus-light { background: #ffffff; border: 1px solid #ddd; }
+    .campus-logo-img { display: block; width: 100%; height: 52px; object-fit: contain; padding: 8px 14px; box-sizing: border-box; }
+    /* ── Green nav bar vertical rhythm fix ── */
+    @media screen and (min-width: 64em) {
+        #mainMenuWrapper { padding-top: 0 !important; padding-bottom: 0 !important; }
+        /* Bottom-align all cells: logo trigger bottom = nav items bottom, so centres match */
+        #mainMenuWrapper .grid-x { align-items: center !important; }
+        /* Nav cell gets same bottom padding as campus-selector (8px) so baselines align */
+        #mainMenuWrapper .grid-x > .cell.auto { padding-top: 0 !important; padding-bottom: 0 !important; }
     }
 </style>
 
@@ -132,7 +379,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       	<script type="text/javascript">
 					var page_id="https://www.uaa.alaska.edu/index.cshtml";
 					var uaMessages = [];
-				</script></head>
+				</script>
+<script>
+/* Prevent live UAA CMS from overwriting prototype content when running locally */
+(function () {
+  var isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.protocol === 'file:';
+  if (!isLocal) return;
+  page_id = '';
+  var _xhrOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function (method, url) {
+    if (typeof url === 'string' && url.indexOf('uaa.alaska.edu') !== -1) {
+      arguments[1] = 'about:blank';
+    }
+    return _xhrOpen.apply(this, arguments);
+  };
+  if (window.fetch) {
+    var _fetch = window.fetch;
+    window.fetch = function (url, opts) {
+      if (typeof url === 'string' && url.indexOf('uaa.alaska.edu') !== -1) {
+        return Promise.reject(new Error('blocked-local'));
+      }
+      return _fetch.call(window, url, opts);
+    };
+  }
+})();
+</script></head>
    <body id="_top" class="frontpage preloading">
       <nav class="skip-navigation" aria-label="Skip Navigation">
          <ul class="menu">
@@ -317,199 +588,88 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <header class="header flex-child-shrink clearHeader position-relative">
                <div class="top-header" id="topHeader">
                   <div class="top-header-nav-wrapper position-relative">
-                     <div id="utilityBar" class="utility-wrapper utility position-relative" data-toggler=".expanded">
-                        <div id="utilityContainer" class="grid-container">
-                           <div class="grid-x full-height">
-                              <div class="small-7 medium-4 large-3 cell">
-                                 <ul class="menu">
-                                    <li><a class="button show-for-lsmall light-gray small clear" href="/"><span class="show-for-sr">Homepage</span><span class="fas fa-home" aria-hidden="true"></span></a></li>
-                                    <li><a class="button light-gray small clear" href="tel:+19077861800"><span class="fas fa-phone"></span>&nbsp; (907) 786-1800</a></li>
+                     <div id="utilityBar" class="utility-wrapper utility position-relative" data-toggler=".expanded" style="border-bottom:3px solid #ffc325;">
+                        <div id="utilityContainer" class="grid-container" style="height:auto;padding-top:1px;padding-bottom:1px;">
+                           <div class="grid-x full-height align-middle">
+                              <div class="small-7 medium-6 large-6 cell" style="position:relative;z-index:2;">
+                                 <ul class="menu align-middle">
+                                    <li style="line-height:0;"><a href="/"><img src="_template/assets/img/uaa-box-logo.svg" alt="University of Alaska Anchorage" style="height:22px;display:block;"></a></li>
                                  </ul>
                               </div>
+                              <span class="utility-bar-title show-for-large">UNIVERSITY <em style="text-transform:lowercase;font-style:italic;">of</em> ALASKA ANCHORAGE</span>
                               <div class="cell small-5 medium-8 large-9 hide-for-large">
                                  <ul class="menu align-right">
                                     <li><a class="dropdown button light-gray small clear quick-menu" type="button" data-toggle="utilityBar">Quick Menu</a></li>
                                  </ul>
                               </div>
-                              <div class="small-12 medium-12 large-9 cell utility-nav-wrapper hide-overflow" id="utilityMenu">
+                              <div class="small-12 medium-12 large-6 cell utility-nav-wrapper hide-overflow" id="utilityMenu" style="position:relative;z-index:2;">
                                  <nav class="utility-navigation" aria-label="Utility Navigation. You can tab or use arrow keys to navigate.">
                                     		<ul class="dropdown menu align-right" data-dropdown-menu="">
-<li><a class="clear button small light-gray" href="/myuaa">myUAA</a></li>
-<li><a class="clear button small light-gray" href="/a-to-z.cshtml">A-Z</a></li>
-<li><a class="clear button small light-gray" href="/calendars/"><span class="far fa-calendar-alt hide-for-medium"></span><span class="show-for-medium">Calendar</span></a></li>
-<li><a class="clear button small light-gray" href="/directory.cshtml"><span class="far fa-address-book hide-for-medium"></span><span class="show-for-medium">Directory</span></a></li>
-<li><a class="clear button small light-gray" href="/map/"><span class="fas fa-map-marked-alt hide-for-medium"></span><span class="show-for-medium">Map</span></a></li>
-<li><a class="clear button small secondary" href="/giving/"><strong>Give</strong></a></li>
-<li><a class="clear button small light-gray" href="https://consortiumlibrary.org/" target="_blank" rel="noopener"><span class="fas fa-book-reader hide-for-medium"></span><span class="show-for-medium">Library</span></a></li>
-<li><a class="clear button small light-gray" href="#"><span class="show-for-medium">Quick </span>Links</a>
-<ul class="menu">
-<li><a href="/email/">Email</a></li>
-<li><a href="https://classes.alaska.edu">Blackboard</a></li>
-<li><a href="https://catalog.uaa.alaska.edu/">Catalog</a></li>
-<li><a href="https://dw-prod-uaa.ec.alaska.edu/responsiveDashboard" target="_blank" rel="noopener">DegreeWorks</a></li>
-<li><a href="https://portal.office.com">MS Office 365</a></li>
-<li><a href="/students/bookstore/" target="_blank" rel="noopener">Bookstore</a></li>
-<li><a href="https://alaska.digication.com/" target="_blank" rel="noopener">eWolf ePortfolio</a></li>
-<li><a href="https://me.uaa.alaska.edu">Password Reset</a></li>
-<li><a href="https://intranet.uaa.alaska.edu">Intranet</a></li>
-<li><a href="https://25live.collegenet.com/pro/uaa" target="_blank" rel="noopener">Scheduling (25Live)</a></li>
-<li><a href="https://www.alaska.edu/uaonline/" target="_blank" rel="noopener">UAOnline</a></li>
-<li><a href="http://eaccounts.uaa.alaska.edu">Wolfcard eAccount</a></li>
-</ul>
-</li>
+<li><form class="util-search-form" action="/search.cshtml" method="get" role="search">
+<input type="search" name="q" placeholder="Search UAA&hellip;" aria-label="Search UAA" autocomplete="off" />
+<button type="submit" aria-label="Submit search"><span class="fas fa-search" aria-hidden="true"></span></button>
+</form></li>
 </ul>
                                     		
                                     		
                                     	</nav>
                               </div>
                            </div>
-                        </div><img role="presentation" src="_template/assets/img/top_menu_back.svg" alt="" class="top-menu-back"></div><svg role="presentation" alt="" class="uaa-header-mask" width="100%" height="100%" viewBox="0 0 1 1">
+                        </div><div class="mountain-wrapper" style="display:none;">
+                           <div style="width:100%;height:100%;background-image:url(_template/assets/img/uaa_mountains.svg);background-repeat:no-repeat;background-size:180px auto;background-position:center bottom;-webkit-mask-image:linear-gradient(to right,transparent 0%,black 18%,black 82%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 18%,black 82%,transparent 100%);"></div>
+                        </div>
+                        <img role="presentation" src="_template/assets/img/top_menu_back.svg" alt="" class="top-menu-back" style="display:none;"></div><svg role="presentation" alt="" class="uaa-header-mask" width="100%" height="100%" viewBox="0 0 1 1">
                         <defs>
                            <clipPath id="mask" clipPathUnits="objectBoundingBox" preserveAspectRatio="none">
                               <path d="M0,0h1c0,0,0,0.46,0,0.6943C0.9399,0.6846,0.2129,0.6387,0,0.958C0,0.7686,0,0,0,0z" fill="#4BA585"></path>
                            </clipPath>
-                        </defs></svg><div class="mountain-wrapper">
-                        <div class="grid-container full full-height ">
-                           <div class="grid-x  full-height">
-                              <div class="cell small-12 lsmall-12 medium-8 large-5 xlarge-6 xxlarge-6 xxxlarge-6  position-relative full-height mountains-cell"></div>
-                           </div>
-                        </div>
-                     </div>
-                     <div id="mainMenuWrapper" class="main-menu-wrapper position-relative">
-                        <div class="curve-wrapper position-absolute"><img role="presentation" alt="" class="curve" src="_template/assets/img/proper_curve.svg"></div>
+                        </defs></svg><div id="mainMenuWrapper" class="main-menu-wrapper position-relative" style="border-bottom:none;box-shadow:none;">
+                        
                         <div class="grid-container menu-container">
                            <div class="grid-x align-middle">
-                              <div class="cell small-12 medium-12 large-3 xlarge-3 xxlarge-3 xxxlarge-4 ">
+                              <div class="cell small-12 medium-12 hide-for-large">
                                  <div class="grid-x align-middle">
-                                    <div id="logoCell" class="cell small-8 lsmall-7 medium-4 large-12 xlarge-11 xxlarge-11 xxxlarge-8"><a href="/">
-                                          <h1 class="show-for-sr">University of Alaska Anchorage</h1><img src="_template/assets/img/uaa_logo.svg" alt="University of Alaska Anchorage" class="logo"></a></div>
                                     <div class="cell auto search-button-cell">
-                                       <div class="main-toggle-menu button-group align-right no-margins"><button class="button clear small tertiary hide-for-large" data-toggle="offCanvas" aria-expanded="false" aria-controls="offCanvas"><span aria-hidden="true" class="fas fa-bars"></span><span class="show-for-lsmall"> Menu</span></button><button id="searchButtonMobile" class="button clear small tertiary searchButton hide-for-large"><span class="fas fa-search" aria-hidden="true"></span><span class="show-for-sr">Toggle </span><span class="show-for-medium">Search</span></button></div>
+                                       <div class="main-toggle-menu button-group align-right no-margins"><button class="button clear small tertiary" data-toggle="offCanvas" aria-expanded="false" aria-controls="offCanvas"><span aria-hidden="true" class="fas fa-bars"></span><span class="show-for-lsmall"> Menu</span></button><button id="searchButtonMobile" class="button clear small tertiary searchButton"><span class="fas fa-search" aria-hidden="true"></span><span class="show-for-sr">Toggle </span><span class="show-for-medium">Search</span></button></div>
                                     </div>
                                  </div>
                               </div>
+                              <div class="cell large-3 xlarge-3 xxlarge-3 xxxlarge-4 show-for-large">
+                              <div class="campus-selector" id="campusSelector">
+                                <div class="campus-trigger">
+                                  <button class="campus-chevron" id="campusDropBtn" aria-expanded="false" aria-haspopup="true" aria-controls="campusDropPanel" aria-label="Select campus">
+                                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1L6 7L11 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                  </button>
+                                  <img src="_template/assets/img/uaa_logo.svg" alt="University of Alaska Anchorage" class="campus-nav-logo">
+                                </div>
+                                <div class="campus-drop-panel" id="campusDropPanel" hidden>
+                                  <a href="campus-kpc.html" class="campus-drop-item" style="background: #004687;">
+                                    <img src="_template/assets/img/campuses/kpcwordmark.png" alt="Kenai Peninsula College" class="campus-logo-img">
+                                  </a>
+                                  <a href="campus-matsu.html" class="campus-drop-item" style="background: #213c65;">
+                                    <img src="_template/assets/img/campuses/msc-logo-2.png" alt="Matanuska-Susitna College" class="campus-logo-img">
+                                  </a>
+                                  <a href="campus-pwsc.html" class="campus-drop-item" style="background: rgb(24, 94, 177);">
+                                    <img src="_template/assets/img/campuses/white-header.png" alt="Prince William Sound College" class="campus-logo-img">
+                                  </a>
+                                  <a href="campus-kodiak.html" class="campus-drop-item" style="background: #ffffff; border: 1px solid #ddd;">
+                                    <img src="_template/assets/img/campuses/kodiaklogo.png" alt="Kodiak College" class="campus-logo-img">
+                                  </a>
+                                </div>
+                              </div>
+                           </div>
                               <div class="cell auto show-for-large">
                                  		<!-- Main Menu --><nav class="megamenu show-for-large grid-x align-top" aria-label="Main Navigation. You can tab or use arrow keys to navigate.">
 <ol class="accessible-megamenu menu main-menu align-right cell auto">
 <li>
-<h2><a class="button large clear dropdown tertiary" href="/about/">About UAA</a></h2>
+<h2><a class="button large clear dropdown tertiary" href="/admissions">Admissions</a></h2>
 <div class="accessible-megamenu-panel sub-menu">
 <ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
 <li class="accessible-megamenu-panel-group cell large-4 padding-none">
 <div class="grid-x align-stretch full-height">
 <div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
 <div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/about/"> <span class="light tertiary-text">About</span> <span class="bold-black primary-text">UAA</span> </a></h2>
-<p>As a comprehensive, open access, public institution offering everything from short-term workforce credentials to graduate programs, UAA invites students to define their journey, create their community, and prepare to make an impact in Alaska and beyond. Striving to be a place where every person who wants an education can be successful, UAA transforms the lives of its students and communities, while honoring our locations on the ancestral lands of Alaska&rsquo;s First Peoples.</p>
-<h3 class="label">Popular links</h3>
-<ol class="menu small vertical">
-<ol class="menu small vertical">
-<li><a href="/about/initiative/uaa-2027/">UAA 2027: Strategic Plan</a></li>
-<li><a href="/about/administration/office-of-the-chancellor/">Chancellor</a></li>
-</ol>
-</ol>
-</div>
-</div>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/">About UAA</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/news/">Green and Gold News</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/administration/">Administration</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/about/administration/office-of-the-chancellor/">Chancellor</a></li>
-<li><a href="/academics/office-of-academic-affairs/">Academic Affairs</a></li>
-<li><a href="/about/administrative-services/">Administrative Services</a></li>
-<li><a href="/about/university-advancement/">Advancement</a></li>
-<li><a href="/about/student-affairs/">Student Affairs</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/campuses/">Campuses</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="https://kpc.alaska.edu/" target="_blank" rel="noopener">Kenai Peninsula</a></li>
-<li><a href="https://koc.alaska.edu/" target="_blank" rel="noopener">Kodiak</a></li>
-<li><a href="https://matsu.alaska.edu/" target="_blank" rel="noopener">Matanuska Susitna</a></li>
-<li><a href="https://pwsc.alaska.edu/" target="_blank" rel="noopener">Prince William Sound</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/initiative/uaa-2027/">UAA 2027: Strategic Plan</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/about/initiative/uaa-2027/about.cshtml">About UAA 2027</a></li>
-<li><a href="/about/initiative/uaa-2025/putting-students-first.cshtml">Putting Students First</a></li>
-<li><a href="/about/initiative/uaa-2025/community-partner.cshtml">Community Partner</a></li>
-<li><a href="/about/initiative/uaa-2025/impact-through-innovation.cshtml">Impact through Innovation</a></li>
-<li><a href="/about/initiative/uaa-2025/excellence-through-continuous-improvement.cshtml"> Excellence Through Continuous Improvement </a></li>
-</ol>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<h2><a class="button large clear dropdown tertiary" href="/academics">Academics</a></h2>
-<div class="accessible-megamenu-panel sub-menu">
-<ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
-<li class="accessible-megamenu-panel-group cell large-4 padding-none">
-<div class="grid-x align-stretch full-height">
-<div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
-<div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/admissions/academic-programs/index.cshtml"> <span class="bold-black primary-text">Academics</span> </a></h2>
-<p>The University of Alaska Anchorage transforms lives with over 150 academic certificate and degree programs, student-focused support services, and a dedicated and talented faculty.</p>
-<h3 class="label">Popular links</h3>
-<ol class="menu small vertical">
-<li><a href="https://catalog.uaa.alaska.edu/">Academic Catalog</a></li>
-<li><a href="/academics/advising/index.cshtml">Advising</a></li>
-<li><a href="/academics/apprenticeship-programs/apprentices.cshtml">Apprenticeship</a></li>
-<li><a href="/academics/continuing-education/index.cshtml">Continuing Education</a></li>
-<li><a href="/students/registration/">Dates and Deadlines</a></li>
-<li><a href="/students/registration/secondary-registration.cshtml">Dual Enrollment</a></li>
-<li><a href="/academics/office-of-academic-affairs/student-success/learning-commons/index.cshtml">Learning Commons</a></li>
-</ol>
-</div>
-</div>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/academics">Colleges and Schools</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/academics/college-of-arts-and-sciences/">Arts and Sciences</a></li>
-<li><a href="https://business.uaa.alaska.edu/">Business and Public Policy</a></li>
-<li><a href="/academics/community-and-technical-college/">Community and Technical</a></li>
-<li><a href="/academics/college-of-engineering/">Engineering</a></li>
-<li><a href="/academics/college-of-health/">Health</a></li>
-<li><a href="/academics/school-of-education/">School of Education</a></li>
-<li><a href="/academics/honors-college/">Honors</a></li>
-<li><a href="/academics/graduate-school/">Graduate School</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/academics/office-of-academic-affairs/">Academic Affairs</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/academics/apprenticeship-programs/">Apprenticeship Programs</a></li>
-<li><a href="/academics/continuing-education/">Continuing Education</a></li>
-</ol>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<h2><a class="button large clear dropdown tertiary" href="/admissions">Admissions and <br class="hide-for-xlarge" />Financial Aid</a></h2>
-<div class="accessible-megamenu-panel sub-menu">
-<ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
-<li class="accessible-megamenu-panel-group cell large-4 padding-none">
-<div class="grid-x align-stretch full-height">
-<div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
-<div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/admissions"> <span class="light tertiary-text">Admissions and</span> <br /><span class="bold-black primary-text">Financial Aid</span> </a></h2>
+<h2 class="mega-title"><a class="all-caps" href="/admissions"> <span class="bold-black primary-text">Admissions</span> </a></h2>
 <p>Learn more about admissions processes, taking classes, tour UAA in-person or virtually, and find out more about financial aid. The Office of Financial Aid is available to offer support and advice so you can make informed decisions regarding college funding options. The Enrollment Services Center offers virtual and walk-in appointments to help students apply; get help with financial aid, scholarships, and more.</p>
 <div class="grid-x">
 <div class="cell medium-6">
@@ -564,65 +724,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 <li>
-<h2><a class="button large clear dropdown tertiary" href="/athletics">Athletics</a></h2>
+<h2><a class="button large clear dropdown tertiary" href="/academics">Academics</a></h2>
 <div class="accessible-megamenu-panel sub-menu">
 <ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
 <li class="accessible-megamenu-panel-group cell large-4 padding-none">
 <div class="grid-x align-stretch full-height">
 <div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
 <div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/athletics"> <span class="bold-black primary-text">Athletics</span> </a></h2>
-<p>From 13 competitive NCAA teams to recreation and intramural and club sports, students have the opportunity to excel in athletics at every level. The Alaska Airlines Center and Seawolf Sports Complex offer recreation as well as hosting community events and concerts. Students can take advantage of cheering for SeawolfNation with free tickets to many games.</p>
-<div class="grid-x">
-<div class="cell medium-6">
+<h2 class="mega-title"><a class="all-caps" href="/admissions/academic-programs/index.cshtml"> <span class="bold-black primary-text">Academics</span> </a></h2>
+<p>The University of Alaska Anchorage transforms lives with over 150 academic certificate and degree programs, student-focused support services, and a dedicated and talented faculty.</p>
 <h3 class="label">Popular links</h3>
 <ol class="menu small vertical">
-<li><a href="https://uaa.alaska.edu/bookstore">Seawolf Online Store</a></li>
-<li><a href="/athletics/recreation/">Recreation</a></li>
-<li><a href="/athletics/intramural-club-sports/">Intramurals</a></li>
+<li><a href="https://catalog.uaa.alaska.edu/">Academic Catalog</a></li>
+<li><a href="/academics/advising/index.cshtml">Advising</a></li>
+<li><a href="/academics/apprenticeship-programs/apprentices.cshtml">Apprenticeship</a></li>
+<li><a href="/academics/continuing-education/index.cshtml">Continuing Education</a></li>
+<li><a href="/students/registration/">Dates and Deadlines</a></li>
+<li><a href="/students/registration/secondary-registration.cshtml">Dual Enrollment</a></li>
+<li><a href="/academics/office-of-academic-affairs/student-success/learning-commons/index.cshtml">Learning Commons</a></li>
 </ol>
-</div>
-<div class="cell medium-6">
-<h3 class="label">Locations</h3>
-<ol class="menu small vertical">
-<li><a href="https://goo.gl/maps/TzY7objQKKzy61r7A" target="_blank" rel="noopener">Alaska Airlines Center</a></li>
-<li><a href="https://goo.gl/maps/rx3WEAwdHT3q8RPh6" target="_blank" rel="noopener">Seawolf Sports Complex</a></li>
-</ol>
-</div>
-</div>
 </div>
 </div>
 </li>
 <li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="https://goseawolves.com">Go Seawolves</a></h3>
+<h3 class="h4 tertiary-text"><a href="/academics">Colleges and Schools</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="https://goseawolves.com/calendar">Upcoming Seawolves Games</a></li>
-<li><a href="https://aac-uaa.evenue.net/">Tickets</a></li>
-<li><a href="https://goseawolves.com/staff-directory">Staff Directory</a></li>
+<li><a href="/academics/college-of-arts-and-sciences/">Arts and Sciences</a></li>
+<li><a href="https://business.uaa.alaska.edu/">Business and Public Policy</a></li>
+<li><a href="/academics/community-and-technical-college/">Community and Technical</a></li>
+<li><a href="/academics/college-of-engineering/">Engineering</a></li>
+<li><a href="/academics/college-of-health/">Health</a></li>
+<li><a href="/academics/school-of-education/">School of Education</a></li>
+<li><a href="/academics/honors-college/">Honors</a></li>
+<li><a href="/academics/graduate-school/">Graduate School</a></li>
 </ol>
 </li>
 <li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/athletics#womens">Women's Sports</a></h3>
+<h3 class="h4 tertiary-text"><a href="/academics/office-of-academic-affairs/">Academic Affairs</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="https://goseawolves.com/sports/womens-basketball/schedule">Basketball</a></li>
-<li><a href="https://goseawolves.com/sports/cross-country/schedule">Cross Country</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=wgym">Gymnastics</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=ski">Skiing</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=tf">Track and Field</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=wvball">Volleyball</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/athletics#mens">Men's Sports</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="https://goseawolves.com/schedule.aspx?path=mbball">Basketball</a></li>
-<li><a href="https://goseawolves.com/sports/cross-country/schedule">Cross Country</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=mhockey">Hockey</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=ski">Skiing</a></li>
-<li><a href="https://goseawolves.com/schedule.aspx?path=tf">Track and Field</a></li>
+<li><a href="/academics/apprenticeship-programs/">Apprenticeship Programs</a></li>
+<li><a href="/academics/continuing-education/">Continuing Education</a></li>
 </ol>
 </li>
 </ol>
@@ -707,148 +850,252 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 <li>
-<h2><a class="button large clear dropdown tertiary" href="/students">Student Services</a></h2>
+<h2><a class="button large clear dropdown tertiary" href="/athletics">Athletics</a></h2>
 <div class="accessible-megamenu-panel sub-menu">
 <ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
 <li class="accessible-megamenu-panel-group cell large-4 padding-none">
 <div class="grid-x align-stretch full-height">
 <div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
 <div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/students"> <span class="light tertiary-text">Student</span> <span class="bold-black primary-text">Services</span> </a></h2>
-<p>Explore the wide variety of services and resources available at UAA to help promote your academic and personal success and well-being. From academic advising to student clubs and residence life, we're here to help you have an amazing university experience.</p>
+<h2 class="mega-title"><a class="all-caps" href="/athletics"> <span class="bold-black primary-text">Athletics</span> </a></h2>
+<p>From 13 competitive NCAA teams to recreation and intramural and club sports, students have the opportunity to excel in athletics at every level. The Alaska Airlines Center and Seawolf Sports Complex offer recreation as well as hosting community events and concerts. Students can take advantage of cheering for SeawolfNation with free tickets to many games.</p>
 <div class="grid-x">
 <div class="cell medium-6">
 <h3 class="label">Popular links</h3>
-<ol class="menu small vertical ">
-<li><a href="/academics/advising/">Advising </a></li>
-<li><a href="https://uaa.alaska.edu/bookstore">Bookstore</a></li>
-<li><a href="/students/registration/">Dates and Deadlines</a></li>
-<li><a href="/students/transcripts/">Transcripts</a></li>
-<li><a href="/students/usuaa/">USUAA Student Governance</a></li>
-<li><a href="https://consortiumlibrary.org/">Library</a></li>
-<li><a href="/students/health-safety/health-counseling-center/"> Student Health and Counseling Center </a></li>
+<ol class="menu small vertical">
+<li><a href="https://uaa.alaska.edu/bookstore">Seawolf Online Store</a></li>
+<li><a href="/athletics/recreation/">Recreation</a></li>
+<li><a href="/athletics/intramural-club-sports/">Intramurals</a></li>
 </ol>
 </div>
 <div class="cell medium-6">
 <h3 class="label">Locations</h3>
 <ol class="menu small vertical">
-<li><a href="https://g.page/uaa-student-union">Student Union</a></li>
-<li><a href="https://goo.gl/maps/9CuXvFqxC1SyAgXt7">Enrollment Services Center</a></li>
-<li><a href="https://goo.gl/maps/bL7gzqUfbfJLy7Hn9">Student Health and Counseling Center</a></li>
+<li><a href="https://goo.gl/maps/TzY7objQKKzy61r7A" target="_blank" rel="noopener">Alaska Airlines Center</a></li>
+<li><a href="https://goo.gl/maps/rx3WEAwdHT3q8RPh6" target="_blank" rel="noopener">Seawolf Sports Complex</a></li>
 </ol>
 </div>
 </div>
 </div>
 </div>
 </li>
-<li class="accessible-megamenu-panel-group cell auto">
-<h3 class="h4 tertiary-text"><a href="/students/">Current Students</a></h3>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="https://goseawolves.com">Go Seawolves</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="/academics/advising/">Advising</a></li>
-<li><a href="https://uaa.alaska.edu/bookstore">Bookstore</a></li>
-<li><a href="/students/registration/">Registration, Dates and Deadlines</a></li>
-<li><a href="/students/veterans/">Military and Veteran Student Services</a></li>
-<li><a href="/students/progress">Degree Progress</a></li>
-<li><a href="/students/transfer">Transfer Credit</a></li>
-<li><a href="/students/graduate/">Graduation</a></li>
-<li><a href="/students/career/">Career Services</a></li>
-<li><a href="/about/administrative-services/departments/financial-services/bursar/">Student Account (Bursar)</a></li>
-<li><a href="/students/dean-of-students/">Dean of Students</a></li>
-<li><a href="/students/disability-support-services/">Disability Support Services</a></li>
+<li><a href="https://goseawolves.com/calendar">Upcoming Seawolves Games</a></li>
+<li><a href="https://aac-uaa.evenue.net/">Tickets</a></li>
+<li><a href="https://goseawolves.com/staff-directory">Staff Directory</a></li>
 </ol>
 </li>
-<li class="accessible-megamenu-panel-group cell auto">
-<h3 class="h4 tertiary-text"><a href="/campus-life/">Student Life</a></h3>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/athletics#womens">Women's Sports</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="/students/engage/">Engage</a></li>
-<li><a href="/students/organizations/">Organizations and Clubs</a></li>
-<li><a href="/students/engage/activities-programs.cshtml">Activities and Programs</a></li>
-<li><a href="/students/union/">Student Union</a></li>
-<li><a href="/students/multicultural/">Multicultural Student Services</a></li>
-<li><a href="/students/irsc/">Indigenous and Rural Student Center</a></li>
-<li><a href="/athletics/recreation/">Recreation</a></li>
+<li><a href="https://goseawolves.com/sports/womens-basketball/schedule">Basketball</a></li>
+<li><a href="https://goseawolves.com/sports/cross-country/schedule">Cross Country</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=wgym">Gymnastics</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=ski">Skiing</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=tf">Track and Field</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=wvball">Volleyball</a></li>
 </ol>
 </li>
-<li class="accessible-megamenu-panel-group cell auto">
-<h3 class="h4 tertiary-text"><a href="/residence-life/">Residence Life</a></h3>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/athletics#mens">Men's Sports</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="/residence-life/explore/">Housing Options</a></li>
-<li><a href="/residence-life/apply/">Apply for Housing</a></li>
-<li><a href="/residence-life/current-residents/">Current Residents</a></li>
-<li><a href="/residence-life/parents-guardians.cshtml">Info for Parents/Guardians</a></li>
-<li><a href="/residence-life/contact.cshtml">Contact Residence Life</a></li>
-</ol>
-</li>
-<li class="accessible-megamenu-panel-group cell auto">
-<h3 class="h4 tertiary-text"><a href="/students/leadership/">Student Leadership</a></h3>
-<hr />
-<ol class="menu vertical">
-<li><a href="/students/usuaa/">USUAA Student Governance</a></li>
-<li><a href="/students/leadership/media.cshtml">Student Media</a></li>
-<li><a href="/students/leadership/concert-board.cshtml">Concert Board</a></li>
-<li><a href="/students/leadership/green-fee-board.cshtml">Green Fee Board</a></li>
-<li><a href="/students/organizations/club-council.cshtml">Club Council</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=mbball">Basketball</a></li>
+<li><a href="https://goseawolves.com/sports/cross-country/schedule">Cross Country</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=mhockey">Hockey</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=ski">Skiing</a></li>
+<li><a href="https://goseawolves.com/schedule.aspx?path=tf">Track and Field</a></li>
 </ol>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<h2><a class="button large clear dropdown tertiary" href="/about/aneo">Alaska Natives</a></h2>
+<h2><a class="button large clear dropdown tertiary" href="/alumni/">Alumni</a></h2>
+<div class="accessible-megamenu-panel sub-menu">
+<ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
+<li class="accessible-megamenu-panel-group cell large-4 padding-none">
+<div class="grid-x align-stretch full-height">
+<div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
+<div class="cell small-12 xxlarge-7 xxxlarge-6 padding-large-y padding-large-x">
+<h2 class="mega-title"><a class="all-caps" href="/alumni/"> <span class="bold-black primary-text">Alumni</span> </a></h2>
+<p>Stay connected with UAA after graduation. Explore resources, events, and ways to give back to the Seawolf community.</p>
+<h3 class="label">Popular links</h3>
+<ol class="menu small vertical">
+<li><a href="/alumni/">Alumni Home</a></li>
+<li><a href="/alumni/events/">Alumni Events</a></li>
+<li><a href="/alumni/giving/">Give Back</a></li>
+</ol>
+</div></div></li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/alumni/">Alumni Resources</a></h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="/alumni/transcript/">Transcripts</a></li>
+<li><a href="/alumni/careers/">Career Services</a></li>
+<li><a href="/alumni/update/">Update Your Info</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<h2><a class="button large clear dropdown tertiary" href="#">Campus Life</a></h2>
+<div class="accessible-megamenu-panel sub-menu">
+<ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
+<li class="accessible-megamenu-panel-group cell large-4 padding-none">
+<div class="grid-x align-stretch full-height">
+<div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
+<div class="cell small-12 xxlarge-7 xxxlarge-6 padding-large-y padding-large-x">
+<h2 class="mega-title"><a class="all-caps" href="#"><span class="bold-black primary-text">Campus Life</span></a></h2>
+<p>Discover everything UAA has to offer outside the classroom &mdash; from student organizations and recreation to campus events and resources.</p>
+<h3 class="label">Popular links</h3>
+<ol class="menu small vertical">
+<li><a href="https://consortiumlibrary.org/" target="_blank" rel="noopener">Library</a></li>
+<li><a href="/students/recreation/">Recreation &amp; Wellness</a></li>
+<li><a href="/students/union/">Student Union</a></li>
+<li><a href="/calendars/">Calendar of Events</a></li>
+</ol>
+</div>
+</div>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="https://consortiumlibrary.org/" target="_blank" rel="noopener">Library</a></h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="https://consortiumlibrary.org/" target="_blank" rel="noopener">Consortium Library</a></li>
+<li><a href="https://consortiumlibrary.org/research/" target="_blank" rel="noopener">Research Help</a></li>
+<li><a href="https://consortiumlibrary.org/about/hours/" target="_blank" rel="noopener">Hours &amp; Locations</a></li>
+</ol>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/students/">Student Life</a></h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="/students/organizations/">Student Organizations</a></li>
+<li><a href="/students/union/">Student Union</a></li>
+<li><a href="/students/multicultural/">Multicultural Student Services</a></li>
+<li><a href="/students/recreation/">Recreation &amp; Wellness</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<h2><a class="button large clear dropdown tertiary" href="#">Shortcuts</a></h2>
+<div class="accessible-megamenu-panel sub-menu">
+<ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
+<li class="accessible-megamenu-panel-group cell large-4 padding-none">
+<div class="grid-x align-stretch full-height">
+<div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
+<div class="cell small-12 xxlarge-7 xxxlarge-6 padding-large-y padding-large-x">
+<h2 class="mega-title"><a class="all-caps" href="#"><span class="bold-black primary-text">Shortcuts</span></a></h2>
+<p>Quick access to the tools and resources you use most.</p>
+<h3 class="label">Popular</h3>
+<ol class="menu small vertical">
+<li><a href="/email/">Email</a></li>
+<li><a href="https://classes.alaska.edu">Blackboard</a></li>
+<li><a href="https://catalog.uaa.alaska.edu/">Catalog</a></li>
+</ol>
+</div>
+</div>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text">Academics</h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="https://catalog.uaa.alaska.edu/">Catalog</a></li>
+<li><a href="https://dw-prod-uaa.ec.alaska.edu/responsiveDashboard" target="_blank" rel="noopener">DegreeWorks</a></li>
+<li><a href="https://classes.alaska.edu">Blackboard</a></li>
+<li><a href="https://www.alaska.edu/uaonline/" target="_blank" rel="noopener">UAOnline</a></li>
+</ol>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text">Services</h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="/email/">Email</a></li>
+<li><a href="https://portal.office.com">MS Office 365</a></li>
+<li><a href="/students/bookstore/" target="_blank" rel="noopener">Bookstore</a></li>
+<li><a href="https://me.uaa.alaska.edu">Password Reset</a></li>
+<li><a href="https://intranet.uaa.alaska.edu">Intranet</a></li>
+<li><a href="https://25live.collegenet.com/pro/uaa" target="_blank" rel="noopener">Scheduling (25Live)</a></li>
+<li><a href="http://eaccounts.uaa.alaska.edu">Wolfcard eAccount</a></li>
+<li><a href="https://alaska.digication.com/" target="_blank" rel="noopener">eWolf ePortfolio</a></li>
+</ol>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<h2><a class="button large clear dropdown tertiary" href="/about/">About</a></h2>
 <div class="accessible-megamenu-panel sub-menu">
 <ol class="grid-x grid-padding-x grid-padding-x-large align-stretch full-height">
 <li class="accessible-megamenu-panel-group cell large-4 padding-none">
 <div class="grid-x align-stretch full-height">
 <div class="cell xxlarge-5 xxxlarge-6 show-for-xxlarge">&nbsp;</div>
 <div class="cell small-12 xxlarge-7  xxxlarge-6  padding-large-y padding-large-x">
-<h2 class="mega-title"><a class="all-caps" href="/about/aneo"> <span class="light tertiary-text">Alaska</span> <span class="bold-black primary-text">Natives</span> </a></h2>
-<p>UAA is located in the ancestral homelands of the Dena'ina, Ahtna, Alutiiq/Sugpiak and Eyak/dAXunhyuu Peoples. Alaska Native academic programs at UAA provide courses, minors, certificates and degrees. Alaska Native student support programs provide centers for belonging across UAA.</p>
-<div class="grid-x">
-<div class="cell medium-6">
+<h2 class="mega-title"><a class="all-caps" href="/about/"><span class="bold-black primary-text">About UAA</span></a></h2>
+<p>As a comprehensive, open access, public institution offering everything from short-term workforce credentials to graduate programs, UAA invites students to define their journey, create their community, and prepare to make an impact in Alaska and beyond. Striving to be a place where every person who wants an education can be successful, UAA transforms the lives of its students and communities, while honoring our locations on the ancestral lands of Alaska&rsquo;s First Peoples.</p>
 <h3 class="label">Popular links</h3>
-<ol class="menu small vertical ">
-<li><a href="/about/aneo">Alaska Native Success Initiative</a></li>
+<ol class="menu small vertical">
+<li><a href="/map/">Campus Map</a></li>
+<li><a href="/a-to-z.cshtml">A-Z Index</a></li>
+<li><a href="/calendars/">Calendar</a></li>
+<li><a href="/directory.cshtml">Directory</a></li>
+<li><a href="/about/initiative/uaa-2027/">UAA 2027: Strategic Plan</a></li>
+<li><a href="/about/administration/office-of-the-chancellor/">Chancellor</a></li>
 </ol>
-</div>
-</div>
 </div>
 </div>
 </li>
 <li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/aneo">Academic Programs</a></h3>
+<h3 class="h4 tertiary-text"><a href="/about/">About UAA</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="/academics/college-of-arts-and-sciences/departments/alaska-native-studies/"> Alaska Native Studies &mdash; Anchorage Campus </a></li>
-<li><a href="https://kpc.alaska.edu/academics/areas-of-study/alaska-native-studies.cshtml"> Alaska Native Studies &mdash; Kenai Peninsula College </a></li>
-<li><a href="https://koc.alaska.edu/programs/departments/alutiiq_studies.cshtml"> Alutiiq Studies &mdash; Kodiak College </a></li>
-<li><a href="/academics/college-of-arts-and-sciences/departments/art/disciplines/ak-native-art.cshtml"> Alaska Native Art </a></li>
-<li><a href="https://business.uaa.alaska.edu/anom/">Alaska Native Business Management</a></li>
-<li><a href="https://catalog.uaa.alaska.edu/undergraduateprograms/coh/oec-indianchildwelfareact/"> Indian Child Welfare Act (ICWA) </a></li>
-<li><a href="/academics/school-of-education/programs/index.cshtml"> Indigenizing Education </a></li>
+<li><a href="/news/">Green and Gold News</a></li>
 </ol>
 </li>
 <li class="accessible-megamenu-panel-group cell small-2">
-<h3 class="h4 tertiary-text"><a href="/about/aneo">Student Support</a></h3>
+<h3 class="h4 tertiary-text"><a href="/about/administration/">Administration</a></h3>
 <hr />
 <ol class="menu vertical">
-<li><a href="/students/irsc/">Indigenous and Rural Student Center</a></li>
-<li><a href="https://www.ansep.net/">Alaska Native Science &amp; Engineering Program (ANSEP)</a></li>
-<li><a href="/academics/college-of-arts-and-sciences/departments/psychology/students/ancap/"> Alaska Native Community Advancement in Psychology (ANCAP) </a></li>
-<li><a href="/residence-life/explore/available-programs.cshtml"> Alaska Native, Indigenous &amp; Rural Outreach Program (ANIROP) </a></li>
-<li><a href="/academics/college-of-health/cip/ak-traditional-kitchen/index.cshtml"> Alaska Traditional Kitchen </a></li>
-<li><a href="/academics/college-of-health/departments/wwami/della-keats/index.cshtml"> Della Keats </a></li>
-<li><a href="/academics/college-of-health/departments/school-of-nursing/rrann/"> Recruitment and Retention of Alaska Natives into Nursing (RRANN) </a></li>
+<li><a href="/about/administration/office-of-the-chancellor/">Chancellor</a></li>
+<li><a href="/academics/office-of-academic-affairs/">Academic Affairs</a></li>
+<li><a href="/about/administrative-services/">Administrative Services</a></li>
+<li><a href="/about/university-advancement/">Advancement</a></li>
+<li><a href="/about/student-affairs/">Student Affairs</a></li>
+</ol>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/about/campuses/">Campuses</a></h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="https://kpc.alaska.edu/" target="_blank" rel="noopener">Kenai Peninsula</a></li>
+<li><a href="https://koc.alaska.edu/" target="_blank" rel="noopener">Kodiak</a></li>
+<li><a href="https://matsu.alaska.edu/" target="_blank" rel="noopener">Matanuska Susitna</a></li>
+<li><a href="https://pwsc.alaska.edu/" target="_blank" rel="noopener">Prince William Sound</a></li>
+</ol>
+</li>
+<li class="accessible-megamenu-panel-group cell small-2">
+<h3 class="h4 tertiary-text"><a href="/about/initiative/uaa-2027/">UAA 2027: Strategic Plan</a></h3>
+<hr />
+<ol class="menu vertical">
+<li><a href="/about/initiative/uaa-2027/about.cshtml">About UAA 2027</a></li>
+<li><a href="/about/initiative/uaa-2025/putting-students-first.cshtml">Putting Students First</a></li>
+<li><a href="/about/initiative/uaa-2025/community-partner.cshtml">Community Partner</a></li>
+<li><a href="/about/initiative/uaa-2025/impact-through-innovation.cshtml">Impact through Innovation</a></li>
+<li><a href="/about/initiative/uaa-2025/excellence-through-continuous-improvement.cshtml"> Excellence Through Continuous Improvement </a></li>
 </ol>
 </li>
 </ol>
 </div>
 </li>
-</ol>
-<ul class="menu main-menu align-right cell shrink">
-<li><button id="searchButton" class="button clear large searchButton tertiary show-for-large"> <span class="fas fa-search" aria-hidden="true"></span> <span class="show-for-sr">Toggle </span><span class="show-for-medium">Search</span> </button></li>
+
 </ul>
 </nav>
                                  		
@@ -897,19 +1144,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                      </div>
                   </div>
+               <div id="audienceBar">
+                  <div class="grid-container">
+                     <ul class="menu">
+                        <li><a href="/future-students/">Future Students</a></li>
+                        <li class="bar3-divider">|</li>
+                        <li><a href="/current-students/">Current Students</a></li>
+                        <li class="bar3-divider">|</li>
+                        <li><a href="/faculty-staff/">Faculty and Staff</a></li>
+                        <li class="bar3-divider">|</li>
+                        <li><a class="give-link" href="/myuaa">myUAA</a></li>
+                        <li class="bar3-divider">|</li>
+                        <li><a class="give-link" href="/giving/"><strong>Give</strong></a></li>
+                     </ul>
+                  </div>
+               </div>
                </div>
                <div class="header-slider">
                   <div class="header-orbit full-height orbit" role="region" aria-label="Photos of campus." data-orbit="" data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out;">
                      <div class="orbit-wrapper">
                         <ul class="orbit-container">
                            <li class="is-active orbit-slide">
-                              <figure class="orbit-figure"><img alt="Students around campus" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDIiPjwvc3ZnPg==" data-sizes="auto" data-src="_images/home-page/_hero-images/230119-STUDENTS-AROUND-CAMPUS_1280x1280.jpg" data-srcset="_images/home-page/_hero-images/230119-STUDENTS-AROUND-CAMPUS_480x720.jpg 480w,             _images/home-page/_hero-images/230119-STUDENTS-AROUND-CAMPUS_1280x1280.jpg 1200w,             _images/home-page/_hero-images/230119-STUDENTS-AROUND-CAMPUS_Full2.jpg 2000w," class="lazyload"></figure>
+                              <figure class="orbit-figure"><img alt="UAA campus in winter with Seawolf mural" src="_images/home-page/_hero-images/aroundcampus.png" class="lazyload" style="width:100%;height:100%;object-fit:cover;"></figure>
                            </li>
                            <li class="orbit-slide">
-                              <figure class="orbit-figure"><img alt="UAA Aviation airplane and hanger" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDIiPjwvc3ZnPg==" data-sizes="auto" data-src="_images/home-page/_hero-images/230105-AVIATION-JRE-0081_1280x1280.jpg" data-srcset="_images/home-page/_hero-images/230105-AVIATION-JRE-0081_480x720.jpg 480w,             _images/home-page/_hero-images/230105-AVIATION-JRE-0081_1280x1280.jpg 1200w,             _images/home-page/_hero-images/230105-AVIATION_Full.jpg 2000w," class="lazyload"></figure>
-                           </li>
-                           <li class="orbit-slide">
-                              <figure class="orbit-figure"><img alt="Students walking at Fall Commencement" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzIDIiPjwvc3ZnPg==" data-sizes="auto" data-src="_images/home-page/_hero-images/221218-FALL-COMMENCEMENT_1280x1280.jpg" data-srcset="_images/home-page/_hero-images/221218-FALL-COMMENCEMENT_480x720.jpg 480w,             _images/home-page/_hero-images/221218-FALL-COMMENCEMENT_1280x1280.jpg 1200w,             _images/home-page/_hero-images/221218-FALL-COMMENCEMENT_Full.jpg 2000w," class="lazyload"></figure>
+                              <figure class="orbit-figure"><img alt="UAA Aviation Cessna over UAA hangar" src="_images/home-page/_hero-images/aviation.png" class="lazyload" style="width:100%;height:100%;object-fit:cover;"></figure>
                            </li>
                         </ul>
                      </div>
@@ -917,71 +1176,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                   </div>
                </div>
                <div class="page-angles-wrapper position-absolute"><img role="presentation" src="_template/assets/img/page-angle.svg" alt="" class="page-angle"><img role="presentation" src="_template/assets/img/page-angle.svg" alt="" class="page-angle flip right"></div>
-               <div class="orbit-overlay position-absolute">
-                  <div class="grid-container min-max full-height">
-                     <div class="grid-x align-middle medium-align-middle large-align-bottom full-height">
-                        <div class="cell small-12 flex-container flex-dir-column">
-                           <div class="oversize-text-wrapper text-center flex-child-auto oversize-text"><span class="bold-black"><span class="hand-circle-1">Join </span></span><span>Seawolf Nation</span></div>
-                           <div class="flex-child-shrink grid-x">
-                              <div class="cell small-12 medium-8 large-5">
-                                 <p class="text-center text-white large-text"> Apply now to join the next class of UAA students.</p>
-                              </div>
-                              <div class="cell small-12 medium-4 large-6 large-offset-1 ">
-                                 <div class="button-group large medium-align-left small-align-center"><a href="/admissions/apply/" class="button white icon all-caps highlighted"><span class="fa fa-arrow-alt-circle-right primary-tertiary-linear-vgradient-back"></span> Apply
-                                       										<strong>Now</strong></a></div>
-                              </div>
-                              <div class="cell large-8">
-                                 <div class="button-group align-center"><a href="/admissions/visit/" class="button white icon all-caps"><span class="fa fa-camera-retro primary-tertiary-linear-vgradient-back"></span> Visit
-                                       										<strong>UAA</strong></a><a href="/admissions/request-info.cshtml" class="button white icon all-caps"><span class="fa fa-info-circle primary-tertiary-linear-vgradient-back"></span> Request
-                                       										<strong>Info</strong></a><a href="/academics/online" class="button white icon all-caps"><span class="fa fa-globe primary-tertiary-linear-vgradient-back"></span> Learn 
-                                       										<strong>Online</strong></a></div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
+               <div class="orbit-overlay position-absolute" style="display:flex;flex-direction:column;">
+                  <div style="flex:1;"></div>
+                  <div class="hero-tab-strip">
+                     <a href="/admissions/visit/" class="hero-tab">
+                        <span class="hero-tab-icon-wrap" style="width:2.6rem;height:2.6rem;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.15rem;transition:background 0.2s;"><span class="fa fa-camera" aria-hidden="true"></span></span>
+                        <span class="hero-tab-label"><span style="display:block;font-size:0.68rem;font-weight:400;letter-spacing:0.03em;opacity:0.75;text-transform:none;margin-bottom:1px;">Come see us</span>Take a Tour!</span>
+                     </a>
+                     <a href="/admissions/request-info.cshtml" class="hero-tab">
+                        <span class="hero-tab-icon-wrap" style="width:2.6rem;height:2.6rem;border-radius:50%;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.15rem;transition:background 0.2s;"><span class="fa fa-question" aria-hidden="true"></span></span>
+                        <span class="hero-tab-label"><span style="display:block;font-size:0.68rem;font-weight:400;letter-spacing:0.03em;opacity:0.75;text-transform:none;margin-bottom:1px;">We&rsquo;re here to help</span>Have Questions?</span>
+                     </a>
+                     <a href="/admissions/apply/" class="hero-tab hero-tab-primary">
+                        <span class="hero-tab-icon-wrap" style="width:2.6rem;height:2.6rem;border-radius:50%;background:#ffc325;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.15rem;color:#004631;transition:background 0.2s;"><span class="fa fa-arrow-alt-circle-right" aria-hidden="true"></span></span>
+                        <span class="hero-tab-label"><span style="display:block;font-size:0.68rem;font-weight:400;letter-spacing:0.03em;opacity:0.75;text-transform:none;margin-bottom:1px;">Get started today</span>Apply Today!</span>
+                     </a>
                   </div>
                </div>
-               <div class="audience-menu-wrapper position-relative bright-top">
-                  <div class="grid-container">
-                     <div class="grid-x">
-                        <div class="cell small-4" data-responsive-toggle="audienceMenu" data-hide-for="large">
-                           <ul class="menu align-left">
-                              <li><a class="dropup button light-gray small clear" type="button" data-toggle="audienceMenu">Get Started</a></li>
-                           </ul>
-                        </div>
-                        <div class="cell small-12" id="audienceMenu" data-toggler=".expanded">
-                           <nav aria-label="Audience Navigation. You can tab or use arrow keys to navigate.">
-                              		<!-- Audience Menu -->
-<ul class="vertical large-horizontal menu audience-menu text-left align-left">
-    <li>
-        <a class="button clear light-gray" href="/admissions/"><span class="fas fa-user-plus"></span> Future Students</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="/admissions/transfer.cshtml"><span class="fas fa-people-arrows"></span> Transfer Students</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="/students/"><span class="fas fa-user"></span> Current Students</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="/students/international-student-services/"><span class="fas fa-portrait"></span> International Students</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="/about/university-advancement/alumni-relations/"><span class="fas fa-user-graduate"></span> Alumni</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="https://intranet.uaa.alaska.edu/"><span class="fas fa-chalkboard-teacher"></span> Faculty and Staff</a>
-    </li>
-    <li>
-        <a class="button clear light-gray" href="https://uaonline.alaska.edu/banprod/owa/twbkwbis.P_GenMenu?name=bmenu.P_TakeAClass"><span class="fas fa-chalkboard"></span> Just Take a Class</a>
-    </li>
-</ul>
-
-                              		
-                              		
-                              	</nav>
-                        </div>
-                     </div>
-                  </div><img role="presentation" src="_template/assets/img/trees.svg" alt="" class="big trees lazyload"></div>
                <div class="curve-wrapper">
                   <div class="yellow-line"></div><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" role="presentation" preserveAspectRatio="none" version="1.1" class="curve gradient rolled" id="Layer_1" x="0px" y="0px" height="240px" viewBox="0 0 3583.5 240" xml:space="preserve">
                      
@@ -1007,6 +1218,299 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                      </svg><div class="green-gradient position-absolute senary-tertiary-linear-gradient-back full-height"></div>
                </div>
             </header>
+<!-- ═══════════════════════════════════════════ PROGRAM FINDER ═══════════════════════════════════════════ -->
+<section id="program-finder" class="pf-section">
+<style>
+.pf-section{background:linear-gradient(to bottom,#1a6b44 0%,#002d1a 100%);border-top:4px solid #ffc325;padding:2.75rem 1.5rem 3rem;position:relative;z-index:1;font-family:'Roboto Condensed',sans-serif}
+.pf-wrap{display:flex;gap:1.75rem;max-width:1280px;margin:0 auto;align-items:flex-start}
+.pf-left{flex:0 0 255px;color:#fff}
+.pf-heading{font-size:2rem;font-weight:700;color:#fff;line-height:1.15;margin:0 0 1rem}
+.pf-heading .pf-em{color:#ffc325;font-style:italic}
+.pf-searchbox{display:flex;align-items:center;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.3);border-radius:4px;height:36px;overflow:hidden;margin-bottom:1.4rem}
+.pf-searchbox input{flex:1;background:transparent;border:none;outline:none;color:#fff;font-size:.78rem;padding:0 .6rem;height:100%;font-family:inherit}
+.pf-searchbox input::placeholder{color:rgba(255,255,255,0.5)}
+.pf-searchbox button{background:transparent;border:none;border-left:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.65);padding:0 .65rem;cursor:pointer;height:100%;font-size:.82rem;transition:color .15s}
+.pf-searchbox button:hover{color:#ffc325}
+.pf-filter-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:.45rem}
+.pf-mt{margin-top:1.1rem}
+.pf-college-grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+.pf-col-btn{display:flex;align-items:center;gap:.4rem;background:transparent;border:1px solid rgba(255,255,255,0.22);border-radius:4px;color:rgba(255,255,255,0.82);font-size:.7rem;font-family:inherit;padding:.38rem .5rem;cursor:pointer;text-align:left;line-height:1.2;transition:all .15s}
+.pf-col-btn:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.45);color:#fff}
+.pf-col-btn.active{background:rgba(255,255,255,0.92);border-color:transparent;color:#004631;font-weight:700}
+.pf-col-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.pf-col-btn.active .pf-col-dot{display:none}
+.pf-col-chk{display:none;font-size:.72rem;color:#00583d;font-weight:900;flex-shrink:0;width:10px}
+.pf-col-btn.active .pf-col-chk{display:inline}
+.pf-col-wide{grid-column:span 2}
+.pf-degree-grid{display:grid;grid-template-columns:1fr 1fr;gap:.35rem}
+.pf-deg-btn{display:flex;align-items:center;gap:.38rem;background:transparent;border:1px solid rgba(255,255,255,0.18);border-radius:4px;color:rgba(255,255,255,0.75);font-size:.68rem;font-family:inherit;padding:.32rem .45rem;cursor:pointer;text-align:left;transition:all .15s}
+.pf-deg-btn:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.35);color:#fff}
+.pf-deg-btn.active{background:rgba(255,195,37,0.18);border-color:#ffc325;color:#ffc325}
+.pf-deg-btn i{font-size:.65rem;opacity:.75;flex-shrink:0}
+.pf-deg-btn.active i{opacity:1}
+.pf-center{flex:0 0 295px}
+.pf-card{background:#fff;border-radius:6px;box-shadow:0 6px 24px rgba(0,0,0,0.35);display:flex;flex-direction:column;max-height:490px;overflow:hidden}
+.pf-card-head{background:#f4f4f4;border-bottom:1px solid #ddd;font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#666;padding:.55rem .9rem;flex-shrink:0}
+.pf-list{list-style:none;margin:0;padding:0;overflow-y:auto;flex:1}
+.pf-list::-webkit-scrollbar{width:5px}
+.pf-list::-webkit-scrollbar-track{background:#f5f5f5}
+.pf-list::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+.pf-list li{display:flex;align-items:center;gap:.5rem;padding:.48rem .8rem;cursor:pointer;border-bottom:1px solid #f0f0f0;font-size:.8rem;color:#333;transition:background .12s;line-height:1.3}
+.pf-list li:hover{background:#edf6f2}
+.pf-list li.pf-sel{background:#00583d;color:#fff;font-weight:700}
+.pf-list-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pf-list li.pf-sel .pf-list-dot{background:rgba(255,255,255,0.55)!important}
+.pf-list-name{flex:1}
+.pf-list-arr{font-size:.6rem;color:#ffc325;opacity:0;flex-shrink:0}
+.pf-list li.pf-sel .pf-list-arr{opacity:1}
+.pf-card-foot{font-size:.67rem;color:#aaa;padding:.38rem .9rem;border-top:1px solid #eee;flex-shrink:0}
+.pf-no-results{padding:1.2rem;color:#aaa;font-size:.82rem;text-align:center;font-style:italic}
+.pf-right{flex:1;min-width:0}
+.pf-placeholder{color:rgba(255,255,255,0.35);font-size:.9rem;padding:3rem 1rem;text-align:center;font-style:italic}
+.pf-detail{color:#fff}
+.pf-detail-title{font-size:1.6rem;font-weight:700;color:#fff;margin:0 0 .15rem;line-height:1.2}
+.pf-detail-abbr{font-weight:400;font-size:.9rem;color:rgba(255,255,255,0.65)}
+.pf-detail-meta{display:flex;flex-direction:column;gap:.3rem;margin:.65rem 0 1rem}
+.pf-meta-row{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(255,255,255,0.8)}
+.pf-meta-row i{font-size:.72rem;opacity:.55;width:14px;text-align:center}
+.pf-meta-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.pf-detail-desc{font-size:.8rem;line-height:1.65;color:rgba(255,255,255,0.82);margin:0 0 1.4rem;max-width:520px}
+.pf-detail-btns{display:flex;gap:.7rem;flex-wrap:wrap}
+.pf-btn-dept,.pf-btn-details{display:inline-flex;align-items:center;gap:.35rem;font-family:inherit;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.48rem 1rem;border-radius:3px;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:all .15s}
+.pf-btn-dept{border-color:rgba(255,255,255,0.45);color:#fff;background:transparent}
+.pf-btn-dept:hover{background:rgba(255,255,255,0.1);border-color:#fff;color:#fff}
+.pf-btn-details{background:#ffc325;border-color:#ffc325;color:#004631}
+.pf-btn-details:hover{background:#e6b000;border-color:#e6b000;color:#004631}
+@media(max-width:1024px){.pf-wrap{flex-wrap:wrap}.pf-left,.pf-center,.pf-right{flex:0 0 100%}}
+
+    /* ── Campus Selector in green nav bar ── */
+    .campus-selector {
+        position: relative; display: inline-flex; flex-direction: column;
+        align-items: center; padding: 8px 14px; height: 100%; justify-content: center;
+    }
+    /* .campus-label-text removed */
+    .campus-trigger { display: flex; align-items: center; gap: 7px; }
+    .campus-chevron {
+        background: none; border: none; padding: 0 5px; cursor: pointer;
+        color: rgba(255,255,255,0.9); display: flex; align-items: center;
+        border-radius: 3px; transition: background 0.15s; line-height: 1; height: 39px;
+    }
+    .campus-chevron:hover,
+    .campus-chevron[aria-expanded="true"] { background: rgba(255,255,255,0.18); }
+    .campus-chevron svg { transition: transform 0.2s; display: block; }
+    .campus-chevron[aria-expanded="true"] svg { transform: rotate(180deg); }
+    .campus-nav-logo { height: 39px; display: block; background: rgba(255,255,255,0.92); padding: 3px 8px; border-radius: 4px; }
+    .campus-drop-panel {
+        position: absolute; top: 100%; left: 0; background: #fff;
+        border-radius: 0 0 6px 6px; box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+        z-index: 2000; padding: 12px; min-width: 240px;
+        display: flex; flex-direction: column; gap: 10px;
+    }
+    .campus-drop-panel[hidden] { display: none; }
+    .campus-drop-item {
+        display: block; text-decoration: none; border-radius: 6px; overflow: hidden;
+        transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .campus-drop-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .campus-dark  { background: #00583d; }
+    .campus-light { background: #ffffff; border: 1px solid #ddd; }
+    .campus-logo-img { display: block; width: 100%; height: 52px; object-fit: contain; padding: 8px 14px; box-sizing: border-box; }
+    /* ── Green nav bar vertical rhythm fix ── */
+    @media screen and (min-width: 64em) {
+        #mainMenuWrapper { padding-top: 0 !important; padding-bottom: 0 !important; }
+        /* Bottom-align all cells: logo trigger bottom = nav items bottom, so centres match */
+        #mainMenuWrapper .grid-x { align-items: center !important; }
+        /* Nav cell gets same bottom padding as campus-selector (8px) so baselines align */
+        #mainMenuWrapper .grid-x > .cell.auto { padding-top: 0 !important; padding-bottom: 0 !important; }
+    }
+    /* ---- BAR 3: white audience bar, 80% opacity ---- */
+    #audienceBar {
+        background: rgba(255,255,255,0.8) !important;
+        border-bottom: 1px solid rgba(0,88,61,0.2) !important;
+        padding: 5px 0 !important;
+    }
+    #audienceBar .menu { justify-content: center; align-items: center; gap: 0.25rem; flex-wrap: wrap; }
+    #audienceBar .menu a {
+        color: #00583d !important;
+        font-size: 0.82rem !important;
+        font-weight: 600 !important;
+        padding: 4px 14px !important;
+        text-shadow: none !important;
+        text-transform: none !important;
+        border-radius: 3px !important;
+    }
+    #audienceBar .menu a:hover { background: rgba(0,88,61,0.08) !important; color: #004631 !important; }
+    #audienceBar .give-link strong { color: #00583d !important; }
+    /* ---- SOLID nav bars after scrolling past hero ---- */
+    #topHeader.nav-solid .utility-wrapper.utility { background-color: rgba(255,255,255,1) !important; box-shadow: 0 1px 0 rgba(255,195,37,0.6) !important; }
+    #topHeader.nav-solid .main-menu-wrapper,
+    #topHeader.nav-solid #mainMenuWrapper { background: rgba(0,88,61,1) !important; background-color: rgba(0,88,61,1) !important; box-shadow: 0 2px 8px rgba(0,0,0,0.25) !important; }
+    #topHeader.nav-solid #audienceBar { background: rgba(255,255,255,1) !important; }
+</style>
+<div class="pf-wrap">
+  <div class="pf-left">
+    <h2 class="pf-heading">What do <span class="pf-em">you</span> want to study?</h2>
+    <div class="pf-searchbox">
+      <input type="search" id="pfSearch" placeholder="Airline mechanic, Journalist, Biologist...">
+      <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="pf-filter-label">Filter by College</div>
+    <div class="pf-college-grid" id="pfColleges"></div>
+    <div class="pf-filter-label pf-mt">Filter by Degree Type</div>
+    <div class="pf-degree-grid" id="pfDegrees"></div>
+    <div class="pf-filter-label pf-mt">Filter by Campus</div>
+    <div class="pf-degree-grid" id="pfCampuses"></div>
+  </div>
+  <div class="pf-center">
+    <div class="pf-card">
+      <div class="pf-card-head">Academic Programs</div>
+      <ul class="pf-list" id="pfList"></ul>
+      <div class="pf-card-foot" id="pfCount"></div>
+    </div>
+  </div>
+  <div class="pf-right" id="pfDetail">
+    <div class="pf-placeholder">Select a program from the list to view details.</div>
+  </div>
+</div>
+<script>
+(function(){
+var COLLEGES=[{id:'CAS',name:'College of Arts and Sciences',color:'#1aaa96'},{id:'COH',name:'College of Health',color:'#e07820'},{id:'CBPP',name:'College of Business and Public Policy',color:'#c8a200',wide:true},{id:'SOE',name:'School of Education',color:'#d45010'},{id:'COE',name:'College of Engineering',color:'#1ab5cc'},{id:'CTC',name:'Community & Technical College',color:'#cc3333'}];
+var DEGREES=[{id:'baccalaureate',label:'Baccalaureate',icon:'fa-graduation-cap'},{id:'associate',label:'Associate',icon:'fa-cog'},{id:'certificate',label:'Certificate',icon:'fa-award'},{id:'grad-cert',label:'Graduate Certificate',icon:'fa-scroll'},{id:'masters',label:"Master's",icon:'fa-book'},{id:'doctoral',label:'Doctoral',icon:'fa-user-graduate'},{id:'online',label:'Available Online',icon:'fa-laptop'}];
+var CAMPUSES=[{id:'anchorage',label:'Anchorage',wide:true},{id:'kpc',label:'Kenai Peninsula'},{id:'matsu',label:'Mat-Su'},{id:'pwsc',label:'Prince William Sound'},{id:'kodiak',label:'Kodiak'}];
+var PROGRAMS=[
+{name:'Accounting',college:'CBPP',degrees:['baccalaureate','associate'],degreeAbbr:'B.B.A., A.A.S.',locations:['Anchorage','Online'],online:true,description:"UAA's Accounting program builds a strong foundation in financial reporting, taxation, auditing, and managerial accounting. Students prepare for the CPA exam and careers in public accounting, corporate finance, and government.",dept:'/cbpp/departments/accounting/',details:'/programs/accounting.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Advanced Welding',college:'CTC',degrees:['certificate'],degreeAbbr:'Certificate',locations:['Anchorage'],online:false,description:'The Advanced Welding certificate prepares students for structural, pipeline, and precision welding careers. Coursework covers SMAW, GMAW, GTAW, and FCAW processes with an emphasis on industry certification.',dept:'/ctc/',details:'/programs/welding.cshtml',campus:['anchorage','matsu']},
+{name:'Ahtna Language Instruction',college:'CAS',degrees:['certificate'],degreeAbbr:'Certificate',locations:['Anchorage'],online:false,description:'This certificate trains students in the Ahtna Athabascan language of the upper Copper River region, developing conversational proficiency and instruction skills to support community language revitalization.',dept:'/cas/departments/languages/',details:'/programs/ahtna.cshtml',campus:['anchorage']},
+{name:'Air Traffic Control',college:'CTC',degrees:['associate'],degreeAbbr:'A.A.S.',locations:['Anchorage'],online:false,description:"UAA's FAA-approved Air Traffic Control program prepares students for careers in the national air traffic control system, combining classroom instruction with extensive simulator training.",dept:'/ctc/aviation/',details:'/programs/air-traffic-control.cshtml',campus:['anchorage']},
+{name:'Alaska Native Business Management',college:'CTC',degrees:['certificate'],degreeAbbr:'Certificate',locations:['Anchorage','Online'],online:true,description:'Designed for Alaska Native students and community members, this certificate focuses on business principles relevant to tribal enterprises, Native corporations, and community organizations across rural and urban Alaska.',dept:'/ctc/business/',details:'/programs/alaska-native-business.cshtml',campus:['anchorage','kpc','matsu','pwsc','kodiak']},
+{name:'Alaska Native Studies',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage'],online:false,description:'The Alaska Native Studies program examines the history, cultures, languages, and contemporary issues of Alaska Native peoples, exploring subsistence, sovereignty, and the intersection of traditional knowledge with modern challenges.',dept:'/cas/departments/alaska-native-studies/',details:'/programs/alaska-native-studies.cshtml',campus:['anchorage','kpc','kodiak']},
+{name:'Alutiiq Language',college:'CAS',degrees:['certificate'],degreeAbbr:'Certificate',locations:['Anchorage'],online:false,description:'The Alutiiq Language certificate supports revitalization of the Sugpiaq/Alutiiq language of Kodiak Island, the Alaska Peninsula, and Prince William Sound. Students develop skills to serve as instructors and community resources.',dept:'/cas/departments/languages/',details:'/programs/alutiiq.cshtml',campus:['anchorage','kodiak','pwsc']},
+{name:'Anthropology',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A., B.S.',locations:['Anchorage','Online'],online:true,description:'Anthropology is the holistic, comparative study of human diversity. UAA provides a solid foundation in contemporary theory, practice, and application with a special emphasis on the cultures, lifeways, and social issues of Alaska and the Circumpolar North. The program develops intercultural fluency, critical thinking, and research skills through coursework, applied research, and fieldwork. Graduates find opportunities in education, health care, museums, social services, and international development agencies.',dept:'/cas/departments/anthropology/',details:'/programs/anthropology.cshtml',campus:['anchorage']},
+{name:'Applied Behavior Analysis',college:'COH',degrees:['masters'],degreeAbbr:'M.S.',locations:['Anchorage','Online'],online:true,description:'The ABA graduate program prepares professionals to apply behavior analytic principles to improve lives of individuals with developmental disabilities, autism spectrum disorder, and other behavioral challenges in clinical, school, and community settings.',dept:'/coh/',details:'/programs/aba.cshtml',campus:['anchorage']},
+{name:'Applied Technologies Leadership',college:'CTC',degrees:['baccalaureate'],degreeAbbr:'B.T.',locations:['Anchorage','Online'],online:true,description:'Designed for working professionals with technical certificates or associate degrees, this program develops the supervisory and management skills needed for technical industries across Alaska and beyond.',dept:'/ctc/',details:'/programs/atl.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Apprenticeship Technology',college:'CTC',degrees:['certificate'],degreeAbbr:'Certificate',locations:['Anchorage'],online:false,description:'The Apprenticeship Technology program awards academic credit for registered apprenticeship training, helping skilled tradespeople earn college credits toward technical degrees while advancing in the building and construction trades.',dept:'/ctc/',details:'/programs/apprenticeship.cshtml',campus:['anchorage','matsu']},
+{name:'Architectural & Engineering Technology',college:'CTC',degrees:['associate'],degreeAbbr:'A.A.S.',locations:['Anchorage'],online:false,description:"This program prepares students for careers as architectural and engineering technicians, with training in CAD, building information modeling, construction documents, and project coordination for Alaska's construction industry.",dept:'/ctc/aet/',details:'/programs/aet.cshtml',campus:['anchorage']},
+{name:'Biology',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.S.',locations:['Anchorage'],online:false,description:"UAA's Biology program provides a strong foundation in cell biology, genetics, ecology, evolution, and physiology. Students benefit from research opportunities in Alaska's unique ecosystems with clear pathways to healthcare, research, and environmental careers.",dept:'/cas/departments/biology/',details:'/programs/biology.cshtml',campus:['anchorage','kpc']},
+{name:'Business Administration',college:'CBPP',degrees:['baccalaureate','associate','masters'],degreeAbbr:'B.B.A., A.A.S., M.B.A.',locations:['Anchorage','Online'],online:true,description:"UAA's Business Administration programs prepare students for careers in management, marketing, finance, and entrepreneurship. The MBA develops advanced strategic thinking for experienced professionals navigating Alaska's unique economic landscape.",dept:'/cbpp/',details:'/programs/business-admin.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Chemistry',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.S.',locations:['Anchorage'],online:false,description:'The Chemistry program offers rigorous training in analytical, organic, inorganic, and physical chemistry. Graduates pursue careers in research, industry, healthcare, and environmental science, or advance to graduate and professional programs.',dept:'/cas/departments/chemistry/',details:'/programs/chemistry.cshtml',campus:['anchorage']},
+{name:'Civil Engineering',college:'COE',degrees:['baccalaureate'],degreeAbbr:'B.S.C.E.',locations:['Anchorage'],online:false,description:"UAA's ABET-accredited Civil Engineering program prepares students to design, build, and maintain infrastructure. Alaska's unique challenges — permafrost, seismic design, and remote construction — provide exceptional real-world learning opportunities.",dept:'/coe/civil/',details:'/programs/civil-engineering.cshtml',campus:['anchorage']},
+{name:'Communication',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage'],online:false,description:'The Communication program explores how people create meaning through verbal and nonverbal messages. Students study interpersonal, organizational, and mass communication with clear paths into journalism, public relations, and media production.',dept:'/cas/departments/comm/',details:'/programs/communication.cshtml',campus:['anchorage']},
+{name:'Computer Science',college:'COE',degrees:['baccalaureate','masters'],degreeAbbr:'B.S., M.S.',locations:['Anchorage'],online:false,description:"UAA's Computer Science program covers algorithms, data structures, software engineering, AI, and systems programming. Graduates work in software development, data science, and cybersecurity serving Alaska's growing technology sector.",dept:'/coe/cs/',details:'/programs/computer-science.cshtml',campus:['anchorage']},
+{name:'Dental Hygiene',college:'COH',degrees:['associate','baccalaureate'],degreeAbbr:'A.A.S., B.H.S.',locations:['Anchorage'],online:false,description:"UAA's CODA-accredited Dental Hygiene program prepares students for licensure as dental hygienists. Clinical experience is earned at UAA's on-campus dental clinic, which serves the Anchorage community while providing hands-on training.",dept:'/coh/dh/',details:'/programs/dental-hygiene.cshtml',campus:['anchorage']},
+{name:'Early Childhood Education',college:'SOE',degrees:['baccalaureate','certificate'],degreeAbbr:'B.Ed., Certificate',locations:['Anchorage','Online'],online:true,description:'The Early Childhood Education program prepares educators to support children from birth through age 8, developing skills in developmentally appropriate practice, family engagement, and culturally responsive teaching within Alaska contexts.',dept:'/soe/',details:'/programs/ece.cshtml',campus:['anchorage','kpc','matsu','pwsc','kodiak']},
+{name:'Economics',college:'CBPP',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage'],online:false,description:"The Economics program develops analytical tools to understand economic behavior, policy, and markets. Students apply theory and quantitative methods to Alaska's resource-based economy, preparing for careers in business, government, and policy analysis.",dept:'/cbpp/departments/economics/',details:'/programs/economics.cshtml',campus:['anchorage']},
+{name:'Education',college:'SOE',degrees:['masters','doctoral'],degreeAbbr:'M.Ed., Ed.D.',locations:['Anchorage','Online'],online:true,description:"Graduate Education programs include the M.Ed. for practicing educators and the Ed.D. for educational leaders, emphasizing Alaska-specific contexts, cultural responsiveness, Indigenous education, and evidence-based practice.",dept:'/soe/',details:'/programs/education.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Electrical Engineering',college:'COE',degrees:['baccalaureate'],degreeAbbr:'B.S.E.E.',locations:['Anchorage'],online:false,description:"UAA's ABET-accredited Electrical Engineering program provides training in circuits, electromagnetics, signal processing, and power systems. Students engage Alaska's energy challenges including renewable energy development and remote microgrid design.",dept:'/coe/ee/',details:'/programs/electrical-engineering.cshtml',campus:['anchorage']},
+{name:'English',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage','Online'],online:true,description:'The English program develops critical reading, writing, and analytical skills through literature, creative writing, and linguistics. Graduates pursue careers in education, publishing, law, technical writing, and fields requiring strong communication.',dept:'/cas/departments/english/',details:'/programs/english.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Health Sciences',college:'COH',degrees:['baccalaureate'],degreeAbbr:'B.S.',locations:['Anchorage','Online'],online:true,description:'The Health Sciences program provides a multidisciplinary foundation for healthcare administration and public health careers, building knowledge in health systems, ethics, research methods, and community health practice.',dept:'/coh/',details:'/programs/health-sciences.cshtml',campus:['anchorage','matsu']},
+{name:'History',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage'],online:false,description:'The History program develops critical thinking and research skills through the study of human societies over time. With a focus on Alaska and the Pacific Rim, students explore how historical forces shape contemporary opportunities and challenges.',dept:'/cas/departments/history/',details:'/programs/history.cshtml',campus:['anchorage']},
+{name:'Mathematics',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.S.',locations:['Anchorage'],online:false,description:'The Mathematics program covers calculus, linear algebra, differential equations, statistics, and mathematical modeling. Graduates pursue careers in data science, finance, engineering, education, and academia.',dept:'/cas/departments/math/',details:'/programs/mathematics.cshtml',campus:['anchorage','kpc']},
+{name:'Mechanical Engineering',college:'COE',degrees:['baccalaureate'],degreeAbbr:'B.S.M.E.',locations:['Anchorage'],online:false,description:"UAA's ABET-accredited Mechanical Engineering program prepares students to design and build mechanical systems. Capstone projects in Arctic engineering, energy systems, and robotics reflect Alaska's unique engineering environment.",dept:'/coe/me/',details:'/programs/mechanical-engineering.cshtml',campus:['anchorage']},
+{name:'Nursing',college:'COH',degrees:['associate','baccalaureate','masters'],degreeAbbr:'A.A.S., B.S.N., M.S.N.',locations:['Anchorage','Online'],online:true,description:"UAA's nationally accredited Nursing programs prepare students at multiple entry levels for professional practice. Clinical rotations throughout Anchorage healthcare facilities provide hands-on experience with Alaska's diverse patient population.",dept:'/coh/nursing/',details:'/programs/nursing.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Psychology',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A., B.S.',locations:['Anchorage','Online'],online:true,description:'The Psychology program explores the scientific study of behavior and mental processes. Students develop research methods, statistical analysis, and psychological theory skills applicable to mental health, human services, education, and business careers.',dept:'/cas/departments/psychology/',details:'/programs/psychology.cshtml',campus:['anchorage','kpc']},
+{name:'Public Administration',college:'CBPP',degrees:['masters','grad-cert'],degreeAbbr:'M.P.A., Grad. Certificate',locations:['Anchorage','Online'],online:true,description:'The MPA prepares professionals for leadership in government, nonprofit, and public service. Concentrations in Alaska Native governance and nonprofit management reflect the unique public service opportunities across the state.',dept:'/cbpp/mpa/',details:'/programs/public-admin.cshtml',campus:['anchorage','matsu']},
+{name:'Social Work',college:'COH',degrees:['baccalaureate','masters'],degreeAbbr:'B.S.W., M.S.W.',locations:['Anchorage','Online'],online:true,description:"UAA's CSWE-accredited Social Work programs train students to promote social justice and enhance well-being of individuals, families, and communities, with a strong emphasis on culturally responsive practice with Alaska Native and rural populations.",dept:'/coh/sw/',details:'/programs/social-work.cshtml',campus:['anchorage','kpc','matsu']},
+{name:'Sociology',college:'CAS',degrees:['baccalaureate'],degreeAbbr:'B.A.',locations:['Anchorage'],online:false,description:'The Sociology program examines the structures and dynamics of human societies. Students study race, gender, inequality, organizations, and social change, preparing for careers in human services, research, policy, and education.',dept:'/cas/departments/sociology/',details:'/programs/sociology.cshtml',campus:['anchorage']}
+];
+var activeCols={},activeDeg={},activeCampus={},searchQ='',selected=null;
+function colColor(id){for(var i=0;i<COLLEGES.length;i++){if(COLLEGES[i].id===id)return COLLEGES[i].color;}return'#888';}
+function degLabel(id){for(var i=0;i<DEGREES.length;i++){if(DEGREES[i].id===id)return DEGREES[i].label;}return id;}
+function anyActive(obj){for(var k in obj){if(obj[k])return true;}return false;}
+function getFiltered(){
+  var q=searchQ.toLowerCase().trim();
+  return PROGRAMS.filter(function(p){
+    if(anyActive(activeCols)&&!activeCols[p.college])return false;
+    if(anyActive(activeDeg)){
+      var match=false;
+      for(var d in activeDeg){
+        if(!activeDeg[d])continue;
+        if(d==='online'&&p.online){match=true;break;}
+        for(var i=0;i<p.degrees.length;i++){if(p.degrees[i]===d){match=true;break;}}
+        if(match)break;
+      }
+      if(!match)return false;
+    }
+    if(anyActive(activeCampus)){var cmatch=false;for(var cv in activeCampus){if(!activeCampus[cv])continue;if(p.campus&&p.campus.indexOf(cv)!==-1){cmatch=true;break;}}if(!cmatch)return false;}
+    if(q&&p.name.toLowerCase().indexOf(q)===-1&&p.description.toLowerCase().indexOf(q)===-1)return false;
+    return true;
+  });
+}
+function renderList(){
+  var list=document.getElementById('pfList'),foot=document.getElementById('pfCount'),progs=getFiltered();
+  if(!progs.length){list.innerHTML='<li class="pf-no-results">No programs match your filters.</li>';foot.textContent='0 programs';return;}
+  var html='';
+  for(var i=0;i<progs.length;i++){
+    var p=progs[i],sel=(selected&&selected.name===p.name)?' pf-sel':'';
+    html+='<li class="'+sel+'" data-idx="'+i+'"><span class="pf-list-dot" style="background:'+colColor(p.college)+'"></span><span class="pf-list-name">'+p.name+'</span><i class="fas fa-chevron-right pf-list-arr"></i></li>';
+  }
+  list.innerHTML=html;foot.textContent=progs.length+' program'+(progs.length!==1?'s':'');
+  list.querySelectorAll('li[data-idx]').forEach(function(li){
+    li.addEventListener('click',function(){selected=progs[parseInt(li.dataset.idx)];renderList();renderDetail();});
+  });
+}
+function renderDetail(){
+  var panel=document.getElementById('pfDetail');
+  if(!selected){panel.innerHTML='<div class="pf-placeholder">Select a program from the list to view details.</div>';return;}
+  var p=selected,col=null;
+  for(var i=0;i<COLLEGES.length;i++){if(COLLEGES[i].id===p.college){col=COLLEGES[i];break;}}
+  var degLabels=p.degrees.map(function(d){return degLabel(d);}).join(', ');
+  panel.innerHTML='<div class="pf-detail">'+
+    '<h3 class="pf-detail-title">'+p.name+' <span class="pf-detail-abbr">'+p.degreeAbbr+'</span></h3>'+
+    '<div class="pf-detail-meta">'+
+      '<div class="pf-meta-row"><i class="fas fa-graduation-cap"></i><span>'+degLabels+'</span></div>'+
+      '<div class="pf-meta-row"><i class="fas fa-map-marker-alt"></i><span>'+p.locations.join(', ')+'</span></div>'+
+      (col?'<div class="pf-meta-row"><span class="pf-meta-dot" style="background:'+col.color+'"></span><span>'+col.name+'</span></div>':'')+
+    '</div>'+
+    '<p class="pf-detail-desc">'+p.description+'</p>'+
+    '<div class="pf-detail-btns">'+
+      '<a href="'+p.dept+'" class="pf-btn-dept"><i class="fas fa-building"></i> Department</a>'+
+      '<a href="'+p.details+'" class="pf-btn-details">Course Details <i class="fas fa-arrow-right"></i></a>'+
+    '</div></div>';
+}
+function renderColleges(){
+  var wrap=document.getElementById('pfColleges'),html='';
+  for(var i=0;i<COLLEGES.length;i++){
+    var c=COLLEGES[i],act=activeCols[c.id]?' active':'',wide=c.wide?' pf-col-wide':'';
+    html+='<button class="pf-col-btn'+act+wide+'" data-id="'+c.id+'"><span class="pf-col-dot" style="background:'+c.color+'"></span><span class="pf-col-chk">&#10003;</span>'+c.name+'</button>';
+  }
+  wrap.innerHTML=html;
+  wrap.querySelectorAll('.pf-col-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){var id=btn.dataset.id;activeCols[id]=!activeCols[id];renderColleges();renderList();});
+  });
+}
+function renderDegrees(){
+  var wrap=document.getElementById('pfDegrees'),html='';
+  for(var i=0;i<DEGREES.length;i++){
+    var d=DEGREES[i],act=activeDeg[d.id]?' active':'';
+    html+='<button class="pf-deg-btn'+act+'" data-id="'+d.id+'"><i class="fas '+d.icon+'"></i> '+d.label+'</button>';
+  }
+  wrap.innerHTML=html;
+  wrap.querySelectorAll('.pf-deg-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){var id=btn.dataset.id;activeDeg[id]=!activeDeg[id];renderDegrees();renderList();});
+  });
+}
+function renderCampuses(){
+  var wrap=document.getElementById('pfCampuses'),html='';
+  if(!wrap)return;
+  for(var i=0;i<CAMPUSES.length;i++){
+    var cp=CAMPUSES[i],act=activeCampus[cp.id]?' active':'',wide=cp.wide?' pf-col-wide':'';
+    html+='<button class="pf-deg-btn'+act+wide+'" data-id="'+cp.id+'">'+cp.label+'</button>';
+  }
+  wrap.innerHTML=html;
+  wrap.querySelectorAll('.pf-deg-btn[data-id]').forEach(function(btn){
+    btn.addEventListener('click',function(){var id=btn.dataset.id;activeCampus[id]=!activeCampus[id];renderCampuses();renderList();});
+  });
+}
+function init(){
+  for(var i=0;i<PROGRAMS.length;i++){if(PROGRAMS[i].name==='Anthropology'){selected=PROGRAMS[i];break;}}
+  renderColleges();renderDegrees();renderCampuses();renderList();renderDetail();
+  document.getElementById('pfSearch').addEventListener('input',function(e){searchQ=e.target.value;renderList();});
+}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
+</section>
+
             		<!-- Google Tag Manager (noscript) -->
 <noscript><iframe aria-hidden="true" src="https://www.googletagmanager.com/ns.html?id=GTM-M3B3B2"
 height="0" width="0" title="Google Tag Manager" style="display:none;visibility:hidden"></iframe></noscript>
@@ -1577,5 +2081,51 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       		
       	
       <div id="hidden" style="display:none;"><a id="de" href="https://ouedit.uaa.alaska.edu/11/?skin=oucampus&amp;account=alaska&amp;site=anchorage&amp;action=de&amp;path=/index.pcf" ></a></div>
+
+<script>
+/* Solid nav bars on scroll past hero */
+(function() {
+    var topHeader = document.getElementById('topHeader');
+    var hero = document.querySelector('.header-slider');
+    if (!topHeader || !hero) return;
+    function updateNav() {
+        var heroBottom = hero.getBoundingClientRect().bottom;
+        if (heroBottom <= 0) {
+            topHeader.classList.add('nav-solid');
+        } else {
+            topHeader.classList.remove('nav-solid');
+        }
+    }
+    window.addEventListener('scroll', updateNav, { passive: true });
+    updateNav();
+})();
+
+/* Campus selector dropdown */
+(function() {
+    var btn   = document.getElementById('campusDropBtn');
+    var panel = document.getElementById('campusDropPanel');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!open));
+        panel.hidden = open;
+    });
+    document.addEventListener('click', function(e) {
+        var sel = document.getElementById('campusSelector');
+        if (sel && !sel.contains(e.target)) {
+            btn.setAttribute('aria-expanded', 'false');
+            panel.hidden = true;
+        }
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !panel.hidden) {
+            btn.setAttribute('aria-expanded', 'false');
+            panel.hidden = true;
+            btn.focus();
+        }
+    });
+})();
+</script>
    </body>
 </html>
